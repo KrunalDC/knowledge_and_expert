@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TB Diagnosis Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="Content/style.css">
+</head>
+
+<body>
+    <div class="panel-understanding-check">
+        <div class="bottomHight">
+            <form id="symptomForm">
+                <!-- Question 1 -->
+                <div id="question1" class="question-container active">
+                    <div class="form-group">
+                        <label>Have you been experiencing a persistent cough?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="persistent_cough_status" value="Yes"
+                                    onchange="toggleSliders(1, true)"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="persistent_cough_status" value="No"
+                                    onchange="toggleSliders(1, false)"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders1" style="display: none;">
+                        <label for="severity1">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity1"
+                            name="persistent_cough_severity" oninput="updateValue(this.value, 'Severity1')">
+                        <div class="slider-value" id="sliderValueSeverity1">0</div>
+
+                        <label for="days1">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays1"
+                            name="persistent_cough_duration" oninput="updateValue(this.value, 'Days1')">
+                        <div class="slider-value" id="sliderValueDays1">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div id="question2" class="question-container">
+                    <div class="form-group">
+                        <label>Have you noticed any unexplained weight loss recently?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="weight_loss_status" value="Yes"
+                                    onchange="toggleSliders(2, true)"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="weight_loss_status" value="No"
+                                    onchange="toggleSliders(2, false)"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders2" style="display: none;">
+                        <label for="severity2">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity2"
+                            name="weight_loss_severity" oninput="updateValue(this.value, 'Severity2')">
+                        <div class="slider-value" id="sliderValueSeverity2">0</div>
+
+                        <label for="days2">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays2"
+                            name="weight_loss_duration" oninput="updateValue(this.value, 'Days2')">
+                        <div class="slider-value" id="sliderValueDays2">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div id="question3" class="question-container">
+                    <div class="form-group">
+                        <label>Have you had a fever recently?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="fever_status" value="Yes" onchange="toggleSliders(3, true)">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="fever_status" value="No" onchange="toggleSliders(3, false)">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders3" style="display: none;">
+                        <label for="severity3">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity3"
+                            name="fever_severity" oninput="updateValue(this.value, 'Severity3')">
+                        <div class="slider-value" id="sliderValueSeverity3">0</div>
+
+                        <label for="days3">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays3"
+                            name="fever_duration" oninput="updateValue(this.value, 'Days3')">
+                        <div class="slider-value" id="sliderValueDays3">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div id="question4" class="question-container">
+                    <div class="form-group">
+                        <label>Have you been experiencing night sweats?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="night_sweats_status" value="Yes"
+                                    onchange="toggleSliders(4, true)"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="night_sweats_status" value="No"
+                                    onchange="toggleSliders(4, false)"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders4" style="display: none;">
+                        <label for="severity4">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity4"
+                            name="night_sweats_severity" oninput="updateValue(this.value, 'Severity4')">
+                        <div class="slider-value" id="sliderValueSeverity4">0</div>
+
+                        <label for="days4">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays4"
+                            name="night_sweats_duration" oninput="updateValue(this.value, 'Days4')">
+                        <div class="slider-value" id="sliderValueDays4">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div id="question5" class="question-container">
+                    <div class="form-group">
+                        <label>Have you been feeling unusually fatigued or tired?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="fatigue_status" value="Yes" onchange="toggleSliders(5, true)">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="fatigue_status" value="No" onchange="toggleSliders(5, false)">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders5" style="display: none;">
+                        <label for="severity5">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity5"
+                            name="fatigue_severity" oninput="updateValue(this.value, 'Severity5')">
+                        <div class="slider-value" id="sliderValueSeverity5">0</div>
+
+                        <label for="days5">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays5"
+                            name="fatigue_duration" oninput="updateValue(this.value, 'Days5')">
+                        <div class="slider-value" id="sliderValueDays5">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div id="question6" class="question-container">
+                    <div class="form-group">
+                        <label>Have you been experiencing chest pain?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="chest_pain_status" value="Yes"
+                                    onchange="toggleSliders(6, true)"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="chest_pain_status" value="No"
+                                    onchange="toggleSliders(6, false)"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders6" style="display: none;">
+                        <label for="severity6">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity6"
+                            name="chest_pain_severity" oninput="updateValue(this.value, 'Severity6')">
+                        <div class="slider-value" id="sliderValueSeverity6">0</div>
+
+                        <label for="days6">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays6"
+                            name="chest_pain_duration" oninput="updateValue(this.value, 'Days6')">
+                        <div class="slider-value" id="sliderValueDays6">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div id="question7" class="question-container">
+                    <div class="form-group">
+                        <label>Have you coughed up blood?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="coughing_blood_status" value="Yes"
+                                    onchange="toggleSliders(7, true)"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="coughing_blood_status" value="No"
+                                    onchange="toggleSliders(7, false)"> No
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group slider-group" id="sliders7" style="display: none;">
+                        <label for="severity7">How severe would you rate it on a scale from 1 to 10?</label>
+                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity7"
+                            name="coughing_blood_severity" oninput="updateValue(this.value, 'Severity7')">
+                        <div class="slider-value" id="sliderValueSeverity7">0</div>
+
+                        <label for="days7">How many days have you been experiencing this?</label>
+                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays7"
+                            name="coughing_blood_duration" oninput="updateValue(this.value, 'Days7')">
+                        <div class="slider-value" id="sliderValueDays7">0</div>
+                    </div>
+                </div>
+
+                <!-- Question 8 -->
+                <div id="question8" class="question-container">
+                    <div class="form-group">
+                        <label>Have you been diagnosed with HIV?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="hiv_status" value="Yes"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="hiv_status" value="No"> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 9 -->
+                <div id="question9" class="question-container">
+                    <div class="form-group">
+                        <label>Have you ever had tuberculosis in the past?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="history_of_tb" value="Yes"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="history_of_tb" value="No"> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question 10 -->
+                <div id="question10" class="question-container">
+                    <div class="form-group">
+                        <label>Have you recently been in contact with someone who has tuberculosis?</label>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="recent_exposure" value="Yes"> Yes
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="recent_exposure" value="No"> No
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <button type="button" class="next-button" onclick="showNextQuestion()">Next</button>
+                <button type="submit" class="submit-button" style="display: none;">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentQuestionIndex = 1;
+        const totalQuestions = 10;
+
+        function showNextQuestion() {
+            document.getElementById(`question${currentQuestionIndex}`).classList.remove('active');
+            currentQuestionIndex++;
+            if (currentQuestionIndex > totalQuestions) {
+                currentQuestionIndex = totalQuestions; // Prevent going beyond the last question
+            }
+            document.getElementById(`question${currentQuestionIndex}`).classList.add('active');
+
+            // If on the last question, show the submit button and hide the next button
+            if (currentQuestionIndex === totalQuestions) {
+                document.querySelector('.next-button').style.display = 'none';
+                document.querySelector('.submit-button').style.display = 'block';
+            }
+        }
+
+        function updateValue(value, id) {
+            document.getElementById(`sliderValue${id}`).innerText = value;
+            const slider = document.getElementById(`slider${id}`);
+            const min = slider.min;
+            const max = slider.max;
+            const percentage = ((value - min) / (max - min)) * 100;
+            slider.style.backgroundSize = `${percentage}% 100%`;
+        }
+
+        function toggleSliders(questionNumber, show) {
+            const sliders = document.getElementById(`sliders${questionNumber}`);
+            if (show) {
+                sliders.style.display = 'block';
+            } else {
+                sliders.style.display = 'none';
+                // Reset the sliders to the default value (0)
+                const severitySlider = document.getElementById(`sliderSeverity${questionNumber}`);
+                const daysSlider = document.getElementById(`sliderDays${questionNumber}`);
+                severitySlider.value = 0;
+                daysSlider.value = 0;
+                updateValue(0, `Severity${questionNumber}`);
+                updateValue(0, `Days${questionNumber}`);
+            }
+        }
+        // Handle form submission
+        document.getElementById('symptomForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData.entries());
+
+            // Prepare the structured data
+            const requestData = {
+                persistent_cough: {
+                    duration_days: parseInt(data.persistent_cough_duration || 0, 10),
+                    severity: parseInt(data.persistent_cough_severity || 0, 10)
+                },
+                weight_loss: {
+                    duration_days: parseInt(data.weight_loss_duration || 0, 10),
+                    severity: parseInt(data.weight_loss_severity || 0, 10)
+                },
+                fever: {
+                    duration_days: parseInt(data.fever_duration || 0, 10),
+                    severity: parseInt(data.fever_severity || 0, 10)
+                },
+                night_sweats: {
+                    duration_days: parseInt(data.night_sweats_duration || 0, 10),
+                    severity: parseInt(data.night_sweats_severity || 0, 10)
+                },
+                fatigue: {
+                    duration_days: parseInt(data.fatigue_duration || 0, 10),
+                    severity: parseInt(data.fatigue_severity || 0, 10)
+                },
+                chest_pain: {
+                    duration_days: parseInt(data.chest_pain_duration || 0, 10),
+                    severity: parseInt(data.chest_pain_severity || 0, 10)
+                },
+                coughing_blood: {
+                    duration_days: parseInt(data.coughing_blood_duration || 0, 10),
+                    severity: parseInt(data.coughing_blood_severity || 0, 10)
+                },
+                hiv_status: data.hiv_status === "Yes",
+                history_of_tb: data.history_of_tb === "Yes",
+                recent_exposure: data.recent_exposure === "Yes"
+            };
+
+            // Send the data to the backend
+            fetch('/diagnose_tb_llm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Diagnosis Result:', result);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>
