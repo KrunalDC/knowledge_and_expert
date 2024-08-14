@@ -11,8 +11,7 @@ import os
 app = FastAPI()
 
 # Set your API key
-api_key = "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"
-os.environ["OPENAI_API_KEY"] = api_key
+api_key = ""
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/Content", StaticFiles(directory="Content"), name="Content")
