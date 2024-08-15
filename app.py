@@ -11,7 +11,7 @@ import os
 app = FastAPI()
 
 # Set your API key
-api_key = ""
+api_key = "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"
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/Content", StaticFiles(directory="Content"), name="Content")
@@ -111,9 +111,9 @@ def assess_tuberculosis_llm(data: PatientData):
 
 @app.get("/", response_class=HTMLResponse)
 def read_index(request: Request):
-    return templates.TemplateResponse("indicatior.html", {"request": request})
+    return templates.TemplateResponse("Index.html", {"request": request})
 
-# Define the API endpoint for tuberculosis assessment with dynamic data
+# Define the API endpoint for tuberculosis assessment with dynamic data 
 @app.post("/diagnose_tb_llm")
 def tuberculosis_diagnosis_llm(data: PatientData):
     print(data)

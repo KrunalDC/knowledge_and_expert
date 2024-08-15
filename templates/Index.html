@@ -14,7 +14,6 @@
     <div class="panel-understanding-check">
         <div class="bottomHight">
             <form id="symptomForm">
-                <!-- Question 1 -->
                 <div id="question1" class="question-container active">
                     <div class="form-group">
                         <label>Have you been experiencing a persistent cough?</label>
@@ -44,7 +43,6 @@
                     </div>
                 </div>
 
-                <!-- Question 2 -->
                 <div id="question2" class="question-container">
                     <div class="form-group">
                         <label>Have you noticed any unexplained weight loss recently?</label>
@@ -74,7 +72,6 @@
                     </div>
                 </div>
 
-                <!-- Question 3 -->
                 <div id="question3" class="question-container">
                     <div class="form-group">
                         <label>Have you had a fever recently?</label>
@@ -104,7 +101,6 @@
                     </div>
                 </div>
 
-                <!-- Question 4 -->
                 <div id="question4" class="question-container">
                     <div class="form-group">
                         <label>Have you been experiencing night sweats?</label>
@@ -134,7 +130,6 @@
                     </div>
                 </div>
 
-                <!-- Question 5 -->
                 <div id="question5" class="question-container">
                     <div class="form-group">
                         <label>Have you been feeling unusually fatigued or tired?</label>
@@ -164,7 +159,6 @@
                     </div>
                 </div>
 
-                <!-- Question 6 -->
                 <div id="question6" class="question-container">
                     <div class="form-group">
                         <label>Have you been experiencing chest pain?</label>
@@ -194,7 +188,6 @@
                     </div>
                 </div>
 
-                <!-- Question 7 -->
                 <div id="question7" class="question-container">
                     <div class="form-group">
                         <label>Have you coughed up blood?</label>
@@ -224,7 +217,6 @@
                     </div>
                 </div>
 
-                <!-- Question 8 -->
                 <div id="question8" class="question-container">
                     <div class="form-group">
                         <label>Have you been diagnosed with HIV?</label>
@@ -241,7 +233,6 @@
                     </div>
                 </div>
 
-                <!-- Question 9 -->
                 <div id="question9" class="question-container">
                     <div class="form-group">
                         <label>Have you ever had tuberculosis in the past?</label>
@@ -258,7 +249,6 @@
                     </div>
                 </div>
 
-                <!-- Question 10 -->
                 <div id="question10" class="question-container">
                     <div class="form-group">
                         <label>Have you recently been in contact with someone who has tuberculosis?</label>
@@ -275,114 +265,12 @@
                     </div>
                 </div>
 
-                <!-- Navigation Buttons -->
                 <button type="button" class="next-button" onclick="showNextQuestion()">Next</button>
                 <button type="submit" class="submit-button" style="display: none;">Submit</button>
             </form>
         </div>
     </div>
-
-    <script>
-        let currentQuestionIndex = 1;
-        const totalQuestions = 10;
-
-        function showNextQuestion() {
-            document.getElementById(`question${currentQuestionIndex}`).classList.remove('active');
-            currentQuestionIndex++;
-            if (currentQuestionIndex > totalQuestions) {
-                currentQuestionIndex = totalQuestions; // Prevent going beyond the last question
-            }
-            document.getElementById(`question${currentQuestionIndex}`).classList.add('active');
-
-            // If on the last question, show the submit button and hide the next button
-            if (currentQuestionIndex === totalQuestions) {
-                document.querySelector('.next-button').style.display = 'none';
-                document.querySelector('.submit-button').style.display = 'block';
-            }
-        }
-
-        function updateValue(value, id) {
-            document.getElementById(`sliderValue${id}`).innerText = value;
-            const slider = document.getElementById(`slider${id}`);
-            const min = slider.min;
-            const max = slider.max;
-            const percentage = ((value - min) / (max - min)) * 100;
-            slider.style.backgroundSize = `${percentage}% 100%`;
-        }
-
-        function toggleSliders(questionNumber, show) {
-            const sliders = document.getElementById(`sliders${questionNumber}`);
-            if (show) {
-                sliders.style.display = 'block';
-            } else {
-                sliders.style.display = 'none';
-                // Reset the sliders to the default value (0)
-                const severitySlider = document.getElementById(`sliderSeverity${questionNumber}`);
-                const daysSlider = document.getElementById(`sliderDays${questionNumber}`);
-                severitySlider.value = 0;
-                daysSlider.value = 0;
-                updateValue(0, `Severity${questionNumber}`);
-                updateValue(0, `Days${questionNumber}`);
-            }
-        }
-        // Handle form submission
-        document.getElementById('symptomForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent default form submission
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-
-            // Prepare the structured data
-            const requestData = {
-                persistent_cough: {
-                    duration_days: parseInt(data.persistent_cough_duration || 0, 10),
-                    severity: parseInt(data.persistent_cough_severity || 0, 10)
-                },
-                weight_loss: {
-                    duration_days: parseInt(data.weight_loss_duration || 0, 10),
-                    severity: parseInt(data.weight_loss_severity || 0, 10)
-                },
-                fever: {
-                    duration_days: parseInt(data.fever_duration || 0, 10),
-                    severity: parseInt(data.fever_severity || 0, 10)
-                },
-                night_sweats: {
-                    duration_days: parseInt(data.night_sweats_duration || 0, 10),
-                    severity: parseInt(data.night_sweats_severity || 0, 10)
-                },
-                fatigue: {
-                    duration_days: parseInt(data.fatigue_duration || 0, 10),
-                    severity: parseInt(data.fatigue_severity || 0, 10)
-                },
-                chest_pain: {
-                    duration_days: parseInt(data.chest_pain_duration || 0, 10),
-                    severity: parseInt(data.chest_pain_severity || 0, 10)
-                },
-                coughing_blood: {
-                    duration_days: parseInt(data.coughing_blood_duration || 0, 10),
-                    severity: parseInt(data.coughing_blood_severity || 0, 10)
-                },
-                hiv_status: data.hiv_status === "Yes",
-                history_of_tb: data.history_of_tb === "Yes",
-                recent_exposure: data.recent_exposure === "Yes"
-            };
-
-            // Send the data to the backend
-            fetch('/diagnose_tb_llm', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            })
-                .then(response => response.json())
-                .then(result => {
-                    console.log('Diagnosis Result:', result);
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-    </script>
 </body>
-
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="Content/app.js"></script>
