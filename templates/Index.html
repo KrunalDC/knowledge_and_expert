@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TB Diagnosis Form</title>
+    <title>TB Diagnosis Helper</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="Content/style.css">
@@ -12,265 +12,280 @@
 
 <body>
     <div class="panel-understanding-check">
-        <div class="bottomHight">
-            <form id="symptomForm">
-                <div id="question1" class="question-container active">
-                    <div class="form-group">
-                        <label>Have you been experiencing a persistent cough?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="persistent_cough_status" value="Yes"
-                                    onchange="toggleSliders(1, true)"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="persistent_cough_status" value="No"
-                                    onchange="toggleSliders(1, false)"> No
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group slider-group" id="sliders1" style="display: none;">
-                        <label for="severity1">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity1"
-                            name="persistent_cough_severity" oninput="updateValue(this.value, 'Severity1')">
-                        <div class="slider-value" id="sliderValueSeverity1">0</div>
+        <h1>TB Diagnosis Helper</h1>
+        <p>Please answer the following questions truthfully. This will help us assess your risk for tuberculosis. Click "Next" to proceed through each question.</p>
 
-                        <label for="days1">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays1"
-                            name="persistent_cough_duration" oninput="updateValue(this.value, 'Days1')">
-                        <div class="slider-value" id="sliderValueDays1">0</div>
+        <form id="symptomForm">
+            <!-- Question 1 -->
+            <div id="question1" class="question-container active">
+                <div class="form-group">
+                    <label>Have you been experiencing a persistent cough?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="persistent_cough_status" value="Yes"
+                                onchange="toggleSliders(1, true)"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="persistent_cough_status" value="No"
+                                onchange="toggleSliders(1, false)"> No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders1" style="display: none;">
+                    <label for="severity1">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity1"
+                        name="persistent_cough_severity" oninput="updateValue(this.value, 'Severity1')">
+                    <div class="slider-value" id="sliderValueSeverity1">0</div>
 
-                <div id="question2" class="question-container">
-                    <div class="form-group">
-                        <label>Have you noticed any unexplained weight loss recently?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="weight_loss_status" value="Yes"
-                                    onchange="toggleSliders(2, true)"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="weight_loss_status" value="No"
-                                    onchange="toggleSliders(2, false)"> No
-                            </label>
-                        </div>
+                    <label for="days1">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays1"
+                        name="persistent_cough_duration" oninput="updateValue(this.value, 'Days1')">
+                    <div class="slider-value" id="sliderValueDays1">0</div>
+                </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div id="question2" class="question-container">
+                <div class="form-group">
+                    <label>Have you noticed any unexplained weight loss recently?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="weight_loss_status" value="Yes"
+                                onchange="toggleSliders(2, true)"> Yes
+                        </label>
                     </div>
-                    <div class="form-group slider-group" id="sliders2" style="display: none;">
-                        <label for="severity2">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity2"
-                            name="weight_loss_severity" oninput="updateValue(this.value, 'Severity2')">
-                        <div class="slider-value" id="sliderValueSeverity2">0</div>
-
-                        <label for="days2">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays2"
-                            name="weight_loss_duration" oninput="updateValue(this.value, 'Days2')">
-                        <div class="slider-value" id="sliderValueDays2">0</div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="weight_loss_status" value="No"
+                                onchange="toggleSliders(2, false)"> No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders2" style="display: none;">
+                    <label for="severity2">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity2"
+                        name="weight_loss_severity" oninput="updateValue(this.value, 'Severity2')">
+                    <div class="slider-value" id="sliderValueSeverity2">0</div>
 
-                <div id="question3" class="question-container">
-                    <div class="form-group">
-                        <label>Have you had a fever recently?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="fever_status" value="Yes" onchange="toggleSliders(3, true)">
-                                Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="fever_status" value="No" onchange="toggleSliders(3, false)">
-                                No
-                            </label>
-                        </div>
+                    <label for="days2">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays2"
+                        name="weight_loss_duration" oninput="updateValue(this.value, 'Days2')">
+                    <div class="slider-value" id="sliderValueDays2">0</div>
+                </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div id="question3" class="question-container">
+                <div class="form-group">
+                    <label>Have you had a fever recently?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="fever_status" value="Yes" onchange="toggleSliders(3, true)">
+                            Yes
+                        </label>
                     </div>
-                    <div class="form-group slider-group" id="sliders3" style="display: none;">
-                        <label for="severity3">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity3"
-                            name="fever_severity" oninput="updateValue(this.value, 'Severity3')">
-                        <div class="slider-value" id="sliderValueSeverity3">0</div>
-
-                        <label for="days3">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays3"
-                            name="fever_duration" oninput="updateValue(this.value, 'Days3')">
-                        <div class="slider-value" id="sliderValueDays3">0</div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="fever_status" value="No" onchange="toggleSliders(3, false)">
+                            No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders3" style="display: none;">
+                    <label for="severity3">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity3"
+                        name="fever_severity" oninput="updateValue(this.value, 'Severity3')">
+                    <div class="slider-value" id="sliderValueSeverity3">0</div>
 
-                <div id="question4" class="question-container">
-                    <div class="form-group">
-                        <label>Have you been experiencing night sweats?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="night_sweats_status" value="Yes"
-                                    onchange="toggleSliders(4, true)"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="night_sweats_status" value="No"
-                                    onchange="toggleSliders(4, false)"> No
-                            </label>
-                        </div>
+                    <label for="days3">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays3"
+                        name="fever_duration" oninput="updateValue(this.value, 'Days3')">
+                    <div class="slider-value" id="sliderValueDays3">0</div>
+                </div>
+            </div>
+
+            <!-- Question 4 -->
+            <div id="question4" class="question-container">
+                <div class="form-group">
+                    <label>Have you been experiencing night sweats?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="night_sweats_status" value="Yes"
+                                onchange="toggleSliders(4, true)"> Yes
+                        </label>
                     </div>
-                    <div class="form-group slider-group" id="sliders4" style="display: none;">
-                        <label for="severity4">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity4"
-                            name="night_sweats_severity" oninput="updateValue(this.value, 'Severity4')">
-                        <div class="slider-value" id="sliderValueSeverity4">0</div>
-
-                        <label for="days4">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays4"
-                            name="night_sweats_duration" oninput="updateValue(this.value, 'Days4')">
-                        <div class="slider-value" id="sliderValueDays4">0</div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="night_sweats_status" value="No"
+                                onchange="toggleSliders(4, false)"> No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders4" style="display: none;">
+                    <label for="severity4">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity4"
+                        name="night_sweats_severity" oninput="updateValue(this.value, 'Severity4')">
+                    <div class="slider-value" id="sliderValueSeverity4">0</div>
 
-                <div id="question5" class="question-container">
-                    <div class="form-group">
-                        <label>Have you been feeling unusually fatigued or tired?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="fatigue_status" value="Yes" onchange="toggleSliders(5, true)">
-                                Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="fatigue_status" value="No" onchange="toggleSliders(5, false)">
-                                No
-                            </label>
-                        </div>
+                    <label for="days4">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays4"
+                        name="night_sweats_duration" oninput="updateValue(this.value, 'Days4')">
+                    <div class="slider-value" id="sliderValueDays4">0</div>
+                </div>
+            </div>
+
+            <!-- Question 5 -->
+            <div id="question5" class="question-container">
+                <div class="form-group">
+                    <label>Have you been feeling unusually fatigued or tired?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="fatigue_status" value="Yes" onchange="toggleSliders(5, true)">
+                            Yes
+                        </label>
                     </div>
-                    <div class="form-group slider-group" id="sliders5" style="display: none;">
-                        <label for="severity5">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity5"
-                            name="fatigue_severity" oninput="updateValue(this.value, 'Severity5')">
-                        <div class="slider-value" id="sliderValueSeverity5">0</div>
-
-                        <label for="days5">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays5"
-                            name="fatigue_duration" oninput="updateValue(this.value, 'Days5')">
-                        <div class="slider-value" id="sliderValueDays5">0</div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="fatigue_status" value="No" onchange="toggleSliders(5, false)">
+                            No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders5" style="display: none;">
+                    <label for="severity5">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity5"
+                        name="fatigue_severity" oninput="updateValue(this.value, 'Severity5')">
+                    <div class="slider-value" id="sliderValueSeverity5">0</div>
 
-                <div id="question6" class="question-container">
-                    <div class="form-group">
-                        <label>Have you been experiencing chest pain?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="chest_pain_status" value="Yes"
-                                    onchange="toggleSliders(6, true)"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="chest_pain_status" value="No"
-                                    onchange="toggleSliders(6, false)"> No
-                            </label>
-                        </div>
+                    <label for="days5">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays5"
+                        name="fatigue_duration" oninput="updateValue(this.value, 'Days5')">
+                    <div class="slider-value" id="sliderValueDays5">0</div>
+                </div>
+            </div>
+
+            <!-- Question 6 -->
+            <div id="question6" class="question-container">
+                <div class="form-group">
+                    <label>Have you been experiencing chest pain?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="chest_pain_status" value="Yes"
+                                onchange="toggleSliders(6, true)"> Yes
+                        </label>
                     </div>
-                    <div class="form-group slider-group" id="sliders6" style="display: none;">
-                        <label for="severity6">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity6"
-                            name="chest_pain_severity" oninput="updateValue(this.value, 'Severity6')">
-                        <div class="slider-value" id="sliderValueSeverity6">0</div>
-
-                        <label for="days6">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays6"
-                            name="chest_pain_duration" oninput="updateValue(this.value, 'Days6')">
-                        <div class="slider-value" id="sliderValueDays6">0</div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="chest_pain_status" value="No"
+                                onchange="toggleSliders(6, false)"> No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders6" style="display: none;">
+                    <label for="severity6">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity6"
+                        name="chest_pain_severity" oninput="updateValue(this.value, 'Severity6')">
+                    <div class="slider-value" id="sliderValueSeverity6">0</div>
 
-                <div id="question7" class="question-container">
-                    <div class="form-group">
-                        <label>Have you coughed up blood?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="coughing_blood_status" value="Yes"
-                                    onchange="toggleSliders(7, true)"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="coughing_blood_status" value="No"
-                                    onchange="toggleSliders(7, false)"> No
-                            </label>
-                        </div>
+                    <label for="days6">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays6"
+                        name="chest_pain_duration" oninput="updateValue(this.value, 'Days6')">
+                    <div class="slider-value" id="sliderValueDays6">0</div>
+                </div>
+            </div>
+
+            <!-- Question 7 -->
+            <div id="question7" class="question-container">
+                <div class="form-group">
+                    <label>Have you coughed up blood?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="coughing_blood_status" value="Yes"
+                                onchange="toggleSliders(7, true)"> Yes
+                        </label>
                     </div>
-                    <div class="form-group slider-group" id="sliders7" style="display: none;">
-                        <label for="severity7">How severe would you rate it on a scale from 1 to 10?</label>
-                        <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity7"
-                            name="coughing_blood_severity" oninput="updateValue(this.value, 'Severity7')">
-                        <div class="slider-value" id="sliderValueSeverity7">0</div>
-
-                        <label for="days7">How many days have you been experiencing this?</label>
-                        <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays7"
-                            name="coughing_blood_duration" oninput="updateValue(this.value, 'Days7')">
-                        <div class="slider-value" id="sliderValueDays7">0</div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="coughing_blood_status" value="No"
+                                onchange="toggleSliders(7, false)"> No
+                        </label>
                     </div>
                 </div>
+                <div class="form-group slider-group" id="sliders7" style="display: none;">
+                    <label for="severity7">How severe would you rate it on a scale from 1 to 10?</label>
+                    <input type="range" min="0" max="10" value="0" class="slider" id="sliderSeverity7"
+                        name="coughing_blood_severity" oninput="updateValue(this.value, 'Severity7')">
+                    <div class="slider-value" id="sliderValueSeverity7">0</div>
 
-                <div id="question8" class="question-container">
-                    <div class="form-group">
-                        <label>Have you been diagnosed with HIV?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="hiv_status" value="Yes"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="hiv_status" value="No"> No
-                            </label>
-                        </div>
+                    <label for="days7">How many days have you been experiencing this?</label>
+                    <input type="range" min="0" max="365" value="0" class="slider" id="sliderDays7"
+                        name="coughing_blood_duration" oninput="updateValue(this.value, 'Days7')">
+                    <div class="slider-value" id="sliderValueDays7">0</div>
+                </div>
+            </div>
+
+            <!-- Question 8 -->
+            <div id="question8" class="question-container">
+                <div class="form-group">
+                    <label>Have you been diagnosed with HIV?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hiv_status" value="Yes"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="hiv_status" value="No"> No
+                        </label>
                     </div>
                 </div>
+            </div>
 
-                <div id="question9" class="question-container">
-                    <div class="form-group">
-                        <label>Have you ever had tuberculosis in the past?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="history_of_tb" value="Yes"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="history_of_tb" value="No"> No
-                            </label>
-                        </div>
+            <!-- Question 9 -->
+            <div id="question9" class="question-container">
+                <div class="form-group">
+                    <label>Have you ever had tuberculosis in the past?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="history_of_tb" value="Yes"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="history_of_tb" value="No"> No
+                        </label>
                     </div>
                 </div>
+            </div>
 
-                <div id="question10" class="question-container">
-                    <div class="form-group">
-                        <label>Have you recently been in contact with someone who has tuberculosis?</label>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="recent_exposure" value="Yes"> Yes
-                            </label>
-                        </div>
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="recent_exposure" value="No"> No
-                            </label>
-                        </div>
+            <!-- Question 10 -->
+            <div id="question10" class="question-container">
+                <div class="form-group">
+                    <label>Have you recently been in contact with someone who has tuberculosis?</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="recent_exposure" value="Yes"> Yes
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="recent_exposure" value="No"> No
+                        </label>
                     </div>
                 </div>
+            </div>
+            <div class="overlay" id="overlay">
+                <div class="loader" id="loader"></div>
+            </div>
 
-                <button type="button" class="next-button" onclick="showNextQuestion()">Next</button>
-                <button type="submit" class="submit-button" style="display: none;">Submit</button>
-            </form>
-        </div>
+            <button type="button" class="next-button" onclick="showNextQuestion()">Next</button>
+            <button type="submit" class="submit-button" style="display: none;">Submit</button>
+        </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="Content/app.js"></script>
 </body>
 </html>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="Content/app.js"></script>
